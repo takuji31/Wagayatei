@@ -13,5 +13,10 @@ register 'validator' => sub {
     );
 };
 
+register 'label' => sub {
+    my $self = shift;
+    do $self->get('home')->file('label.pl')->stringify;
+};
+
 1;
 
