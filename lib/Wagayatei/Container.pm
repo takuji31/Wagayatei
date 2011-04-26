@@ -15,7 +15,17 @@ register 'validator' => sub {
 
 register 'label' => sub {
     my $self = shift;
-    do $self->get('home')->file('label.pl')->stringify;
+    do $self->get('home')->file('assets/label.pl')->stringify;
+};
+
+register 'local_navi' => sub {
+    my $self = shift;
+    do $self->get('home')->file('assets/local_navi.pl')->stringify;
+};
+
+register 'oauth_conf' => sub {
+    my $self = shift;
+    do $self->get('home')->file('assets/oauth.pl')->stringify;
 };
 
 1;

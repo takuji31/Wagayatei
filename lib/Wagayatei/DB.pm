@@ -1,0 +1,35 @@
+package  Wagayatei::DB;
+use Chiffon::Core;
+
+use parent qw(Teng);
+
+use Scope::Container;
+use Scope::Container::DBI;
+use Teng::Schema::Loader;
+
+use Wagayatei::Container;
+
+
+sub get_db {
+    my $class = shift;
+    unless ( my $instance = scope_container('db') ) {
+        my $connect_info = $class->get_connect_info;
+        my $dbi = $class->get_dbi;
+        $class->new(
+            connect_info => $connect_info,
+            dbh          => $dbi,
+        );
+    }
+}
+
+sub get_connect_info { container('conf')->{datasource}->{master} }
+
+sub get_dbi {
+    my $connect_info = shift->get_connect_info;
+    my $dbi = Scope::Container::DBI->connect(
+        @$connect_info,
+    );
+    return $dbi;
+}
+
+1;

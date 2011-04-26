@@ -1,2 +1,2 @@
 #!/bin/zsh
-start_server  --interval=10 --port=5555 -- plackup -s Starlet -I ./lib -R ./
+env CHIFFON_APP_ENV=dev plackup -s Starlet -I ./lib -R ./ --port=5555

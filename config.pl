@@ -16,9 +16,12 @@ return +{
             },
         },
         datasource => +{
-            master => +{
-                dsn => 'dbi:mysql:wagayatei_dev;user=root',
-            },
+            master => [
+                'dbi:mysql:wagayatei_dev',
+                'root',
+                '',
+                { RaiseError => 1, mysql_connect_timeout => 4, mysql_enable_utf8 => 1 },
+            ],
         },
         hostname          => +{},
         plugins           => +{},
@@ -36,16 +39,22 @@ return +{
     },
     dev => {
         datasource => +{ 
-            master => +{
-                dsn => 'dbi:mysql:wagayatei_dev;user=root',
-            },
+            master => [
+                'dbi:mysql:wagayatei_dev',
+                'root',
+                '',
+                { RaiseError => 1, mysql_connect_timeout => 4, mysql_enable_utf8 => 1 },
+            ],
         },
     },
     production => {
         datasource => +{
-            master => +{
-                dsn => 'dbi:mysql:wagayatei;user=root',
-            },
+            master => [
+                'dbi:mysql:wagayatei',
+                'root',
+                '',
+                { RaiseError => 1, mysql_connect_timeout => 4, mysql_enable_utf8 => 1 },
+            ],
         },
     },
 };

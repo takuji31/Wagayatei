@@ -1,6 +1,6 @@
 package  Wagayatei::Web::C::Root;
 use Chiffon::Core;
-use Chiffon::Web::Controller;
+use parent qw/ Wagayatei::Web::Controller /;
 use Wagayatei::Container;
 
 sub do_index {
