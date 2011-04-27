@@ -60,7 +60,7 @@ CREATE TABLE `user` (
   `token` varchar(255) NOT NULL COMMENT 'OAuth Token',
   `token_secret` varchar(255) NOT NULL COMMENT 'OAuth Token Secret',
   `name` varchar(32) NOT NULL COMMENT 'ユーザー名',
-  `status` enum('created','accepted','admin','deleted') DEFAULT 'created' COMMENT 'ステータス',
+  `status` enum('authenticated','created','accepted','admin','deleted') DEFAULT 'authenticated' COMMENT 'ステータス',
   `created_at` datetime DEFAULT NULL COMMENT '作成日',
   `updated_at` datetime DEFAULT NULL COMMENT '更新日',
   PRIMARY KEY (`id`),
