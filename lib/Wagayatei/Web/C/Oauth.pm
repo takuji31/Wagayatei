@@ -1,24 +1,24 @@
 package  Wagayatei::Web::C::Oauth;
 use Chiffon::Core;
+
 use parent qw/ Wagayatei::Web::Controller /;
-use Wagayatei::Container;
-use OAuth::Lite::Consumer;
+
+use Config::Pit;
 use JSON::XS;
+use OAuth::Lite::Consumer;
+use Time::Piece::MySQL;
 use URI;
 
+use Wagayatei::Container;
 use Wagayatei::DB;
-use Time::Piece::MySQL;
-
-my $consumer_key = "69Z86YPBmscWuveQ7qQ";
-my $consumer_secret = "dnNQEbhmo38mUhv0eEhBz7jvTjkqHiB0o8qxUgOpk";
-my $request_token_path = 'http://twitter.com/oauth/request_token';
-my $access_token_path = 'http://twitter.com/oauth/access_token';
-my $authorize_path = 'http://twitter.com/oauth/authenticate';
 
 sub get_consumer {
     my ( $class, $c ) = @_;
     my $consumer = OAuth::Lite::Consumer->new(
-        %{container('oauth_conf')},
+        %{pit_get('wagayatei', require => { consumer_key => 'Twitter consumer key', consumer_secret => 'Twitter consumer secret' })}
+        request_token_path => 'http://twitter.com/oauth/request_token',
+        access_token_path  => 'http://twitter.com/oauth/access_token',
+        authorize_path     => 'http://twitter.com/oauth/authenticate',
         callback_url => join '','http://',$c->req->uri->host,'/oauth/callback',
     );
     return $consumer;
@@ -97,6 +97,9 @@ sub do_callback {
         }
     );
 
+    if ( $user->status eq 'authenticated' ) {
+        $c->redirect('/user/register');
+    }
     $c->redirect('/');
 }
 
