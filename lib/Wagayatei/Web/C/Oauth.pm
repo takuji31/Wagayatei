@@ -15,7 +15,7 @@ use Wagayatei::DB;
 sub get_consumer {
     my ( $class, $c ) = @_;
     my $consumer = OAuth::Lite::Consumer->new(
-        %{pit_get('wagayatei', require => { consumer_key => 'Twitter consumer key', consumer_secret => 'Twitter consumer secret' })}
+        %{pit_get('wagayatei', require => { consumer_key => 'Twitter consumer key', consumer_secret => 'Twitter consumer secret' })},
         request_token_path => 'http://twitter.com/oauth/request_token',
         access_token_path  => 'http://twitter.com/oauth/access_token',
         authorize_path     => 'http://twitter.com/oauth/authenticate',
