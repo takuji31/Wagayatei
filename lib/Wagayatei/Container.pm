@@ -23,10 +23,5 @@ register 'local_navi' => sub {
     do $self->get('home')->file('assets/local_navi.pl')->stringify;
 };
 
-register 'oauth_conf' => sub {
-    my $self = shift;
-    do $self->get('home')->file('assets/oauth.pl')->stringify;
-};
-
 1;
 
