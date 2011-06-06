@@ -1,5 +1,6 @@
 package  Wagayatei::Web::C::User;
-use Chiffon::Core;
+use strict;
+use warnings;
 use parent qw/ Wagayatei::Web::Controller /;
 use Wagayatei::Container;
 
