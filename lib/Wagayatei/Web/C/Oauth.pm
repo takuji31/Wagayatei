@@ -1,5 +1,6 @@
 package  Wagayatei::Web::C::Oauth;
-use Chiffon::Core;
+use strict;
+use warnings;
 
 use parent qw/ Wagayatei::Web::Controller /;
 

@@ -1,5 +1,7 @@
 package  Wagayatei::DB;
-use Chiffon::Core;
+use strict;
+use warnings;
+
 
 use parent qw(Teng);
 

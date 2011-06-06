@@ -1,4 +1,6 @@
-use Chiffon::Core;
+use strict;
+use warnings;
+
 return +{
     guild_name        => '憩いの我が家亭',
     skill_max_rank => [

@@ -1,4 +1,6 @@
-use Chiffon::Core;
+use strict;
+use warnings;
+
 return +{
      character => [
         {

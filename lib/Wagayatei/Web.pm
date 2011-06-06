@@ -1,21 +1,18 @@
 package  Wagayatei::Web;
-use Chiffon::Core;
-use Chiffon::View::Xslate;
-use Wagayatei::Web::Context;
-use Wagayatei::Web::Request;
-use Wagayatei::Web::Response;
-use Wagayatei::Web::Dispatcher;
-use Wagayatei::Container;
-use parent qw/ Chiffon::Web /;
+use strict;
+use warnings;
 
-__PACKAGE__->used_modules({
-    container  => 'Wagayatei::Container',
-    context    => 'Wagayatei::Web::Context',
-    request    => 'Wagayatei::Web::Request',
-    response   => 'Wagayatei::Web::Response',
-    dispatcher => 'Wagayatei::Web::Dispatcher',
-    view       => 'Chiffon::View::Xslate',
-});
+use parent qw/ Wagayatei Chiffon::Web /;
+
+use Chiffon::Plugin::Web::Session;
+
+__PACKAGE__->set_use_modules(
+    request  => 'Wagayatei::Web::Request',
+    response => 'Wagayatei::Web::Response',
+    router   => 'Wagayatei::Web::Router',
+);
+
+sub user {shift->stash->{user}}
 
 1;
 

@@ -6,9 +6,6 @@ use Plack::Session::Store::Cache::KyotoTycoon;
 my $home = container('home');
 builder {
     enable 'ReverseProxy';
-    enable 'Static',
-        path => qr{^/(img/|js/|css/|favicon\.ico)},
-        root => $home->file('assets/htdocs')->stringify;
     enable 'StackTrace';
     enable 'Scope::Container';
     enable 'Session',
