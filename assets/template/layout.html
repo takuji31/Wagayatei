@@ -1,76 +1,67 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="ja" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="ja" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="ja" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="ja" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="ja" class="no-js"> <!--<![endif]-->
+<html lang="ja">
 <head>
-	<meta charset="UTF-8">
-	
-    <title> <: $page_title :> | <: $site_title :></title>
-	
-	<meta name="description" content="オンラインゲーム「Mabinogi」ルエリサーバーのギルド「憩いの我が家亭」のWebサイトです。">
-	<meta name="author" content="Senchan">
-	
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<link rel="shortcut icon" href="/favicon.ico">
-	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-	
-	<link rel="stylesheet" href="/css/style.css">
+  <meta charset="utf-8">
+  <title> <: $page_title :> | <: $site_title :></title>
 
-	<script src="/js/libs/modernizr-1.6.min.js"></script>
-    <script type="text/javascript" src="/js/libs/jquery-1.5.min.js"></script>
+  <meta name="description" content="オンラインゲーム「Mabinogi」ルエリサーバーのギルド「憩いの我が家亭」のWebサイトです。">
+  <meta name="author" content="Senchan">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="/css/app.less" media="all" rel="stylesheet/less" type="text/css" />
+  <script src="/js/less-1.0.41.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    // Under development you should uncomment the following lines,
+    // to make the browser refresh the changes that you are makeing in your app.less file.
+    less.env = "development";
+    less.watch();
+  </script>
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <script type="text/javascript" src="/js/libs/jquery-1.5.min.js"></script>
 </head>
 <body>
-	<div id="header-container">
-		<header class="wrapper">
-        <h1 id="title"><: $site_title :></h1>
-			<nav>
-				<ul>
-					<li><a href="#">Some</a></li>
-					<li><a href="#">navigation</a></li>
-					<li><a href="#">links</a></li>
-                    :if ( $user ) {
-                    <li><a href="/user/logout">Logout</a></li>
-                    : } else {
-					<li><a href="/oauth/">Login</a></li>
-                    : }
-				</ul>
-			</nav>
-		</header>
-	</div>
-	<div id="main" class="wrapper">
-		<aside>
-            <h3>こんにちは<: $user.screen_name :>さん</h3>
-		</aside>
-		<article>
-        :block content -> { 
-			<header>
-				<h2>テンプレート</h2>
-                <p>
-                これが表示されてたら管理人までご一報ください
-                </p>
-			</header>
-            <h3>タイトル</h3>
-            <p>内容</p>	
-			<footer>
-                <h3>タイトル</h3>
-                <p>内容</p>	
-			</footer>	
-        :}
-		</article>
-	</div>
-	<div id="footer-container">
-		<footer class="wrapper">
-        <p>for Google Chrome / FireFox4 / Internet Explorer 8</p>
-		</footer>
-	</div>
-
-	<!--[if lt IE 7 ]>
-	<script src="js/libs/dd_belatedpng.js"></script>
-	<script> DD_belatedPNG.fix('img, .png_bg');</script>
-	<![endif]-->
+  <header>
+    <div class="row">
+      <div class="column grid-10">
+        <hgroup>
+          <h1 class="logo">憩いの我が家亭</h1>
+          <p class="slogan">MMORPG「マビノギ」ルエリサーバーのギルド「憩いの我が家亭」のWebサイトです</p>
+        </hgroup>
+      </div>
+    </div>
+    <div class="row">
+      <nav class="global-navi">
+        <ul class="h-menu">
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/character/">Character Sheet</a>
+          </li>
+          :if ( $user ) {
+          <li><a href="/user/logout">Logout</a></li>
+          : } else {
+          <li><a href="/oauth/">Login</a></li>
+          : }
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div id="content">
+    :block content -> { 
+        Something wrong!
+    :}
+  </div>
+  <footer>
+    <div class="row">
+      <div class="column grid-16">
+        <p class="tal">Designed for Google Chrome12, Safari5 and FireFox4</p>
+        <p class="tal"><small>Copyright &copy; 2011 - Senchan.jp</small></p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

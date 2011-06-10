@@ -1,20 +1,23 @@
 :cascade layout;
 :around content -> {
-    <header>
-        <h2>ユーザー登録</h2>
-        <p>
-            このWebサイトへのユーザー登録ができます。
-        </p>
-        <p>
-            ギルドメンバーがメンバーリストへ登録するにはユーザー登録が必須です。<br />
-            登録を行わない場合は閲覧しか行えません。
-        </p>
-    </header>
-    <h3>タイトル</h3>
-    <p>内容</p>
-    <footer>
-        <h3>タイトル</h3>
-        <p>内容</p>	
-    </footer>
+    <div class="row">
+      <div class="column grid-16">
+            <h2>ユーザー登録</h2>
+            <p>
+                このWebサイトへのユーザー登録ができます。
+            </p>
+            <p>
+                ギルドメンバーがメンバーリストへ登録するにはユーザー登録が必須です。<br />
+                登録を行わない場合は閲覧しか行えません。
+            </p>
+          <form action="/user/register">
+            <fieldset>
+              <legend>登録情報</legend>
+              <label for="name">ニックネーム</label>
+              <input type="text" id="name" name="name" />
+            </fieldset>
+          </form>
+      </div>
+    </div>
 :}
 
