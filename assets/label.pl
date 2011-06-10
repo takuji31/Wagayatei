@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+use utf8;
 
 return +{
     guild_name        => '憩いの我が家亭',
