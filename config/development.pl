@@ -3,6 +3,7 @@ use warnings;
 use utf8;
 
 use Wagayatei::Container;
+use Wagayatei::Plugin::View;
 
 my $home = container('home');
 return +{
@@ -15,6 +16,7 @@ return +{
             syntax    => 'Kolon',
             type      => 'html',
             suffix    => '.html',
+            function  => {nl2br => \&nl2br},
         },
     },
     datasource => +{
@@ -29,14 +31,40 @@ return +{
     plugins           => +{},
     validator_message => {
         param => {
+            nick_name        => 'ニックネーム',
             name             => '名前',
-            password         => 'パスワード',
-            password_confirm => 'パスワード（確認）',
-            login_id         => 'ログインID',
-            email            => 'メールアドレス',
-            email_confirm    => 'メールアドレス（確認）',
+            profile          => '紹介文',
         },
         message => {},
+    },
+    skill_max_rank => [
+        '未実装', 'F', 'E', 'D', 'C', 'B', 'A', '9', '8', '7', '6',
+        '5', '4', '3', '2', '1', '1', '段', '段', '3段'
+    ],
+    skill_rank => [
+        '練習', 'F', 'E', 'D', 'C',      'B',
+        'A',      '9', '8', '7', '6',      '5',
+        '4',      '3', '2', '1', 'Master', '1段',
+        '2段',   '3段'
+    ],
+    types => [
+        {
+            key  => 'H',
+            name => '人間',
+        },
+        {
+            key  => 'E',
+            name => 'エルフ',
+        },
+        {
+            key  => 'G',
+            name => 'ジャイアント',
+        },
+    ],
+    type_name => {
+        H => '人間',
+        E => 'エルフ',
+        G => 'ジャイアント',
     },
 };
 

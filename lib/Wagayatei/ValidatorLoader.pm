@@ -2,29 +2,39 @@ package Wagayatei::ValidatorLoader;
 use strict;
 use warnings;
 use utf8;
+use 5.10.1;
 
 use Class::Load qw/load_class/;
-use Smart::Args;
+use Data::Validator;
 
 sub new {
-    my $class => 'ClassName',
-    my $base_class => { isa => 'Str', default => 'Wagayatei' },
-    my $constraints => { isa => 'ArrayRef' };
-    return bless {
-        base_class => $base_class,
-        constraints => $constraints,
-    }, $pkg;
+    state $validator = Data::Validator->new(
+        base_class  => {
+            isa => 'Str',
+            default => sub { my $c = __PACKAGE__; $c =~ s/Loader$//; $c } 
+        },
+        constraints => {
+            isa => 'ArrayRef',
+            default => sub { my $c = __PACKAGE__; $c =~ s/::ValidatorLoader$//; load_class($c); $c->config->{constraints} || [] }
+        },
+        message => {
+            isa => 'HashRef',
+            default => sub { my $c = __PACKAGE__; $c =~ s/::ValidatorLoader$//; load_class($c); $c->config->{validator_message} || {} }
+        },
+    )->with('Method','AllowExtra');
+    my ( $class, $args ) = $validator->validate(@_);
+    return bless { %$args }, $class;
 }
 
 sub get {
     my ( $self, $class_name, $params ) = @_;
 
     $class_name = $self->{base_class} . "::$class_name";
-    load_class( $class_name ) or die "Validation Class $class_name not found";
-    my $validator = $class_name->new($request);
+    load_class( $class_name );
+    my $validator = $class_name->new($params);
     $validator->load_constraints( @{ $self->{constraints} } );
     $validator->set_param_message( %{$self->{message}->{param}} );
-    $validator->validator->load_function_message('ja');
+    $validator->load_function_message('ja');
     return $validator;
 }
 

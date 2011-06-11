@@ -1,0 +1,36 @@
+:cascade layout;
+:around content -> {
+    <div class="row">
+      <div class="column grid-16">
+        <h2>ユーザー登録</h2>
+        <p>
+            この内容でいいですか？よければ登録ボタンを押してください。
+        </p>
+        :block form | fillinform($req) {
+        <form action="/user/register_do" method="post">
+            <input type="hidden" name="nick_name" />
+            <input type="hidden" name="name"  />
+            <input type="hidden" name="profile"  />
+        <table class="my-table">
+            <tbody>
+              <tr>
+                <th>ニックネーム</th>
+                <td><: $req.param('nick_name') :></td>
+              </tr>
+              <tr>
+                <th>メインキャラの名前</th>
+                <td><: $req.param('name') :></td>
+              </tr>
+              <tr>
+                <th>紹介文</th>
+                <td><: $req.param('profile') | nl2br :></td>
+              </tr>
+            </tbody>
+        </table>
+        <div class="submit"><button type="submit">登録</button></div>
+        </form>
+        :}
+      </div>
+    </div>
+:}
+

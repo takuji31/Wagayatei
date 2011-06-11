@@ -8,9 +8,7 @@ use parent qw(Teng);
 use Scope::Container;
 use Scope::Container::DBI;
 use Teng::Schema::Loader;
-
-use Wagayatei::Container;
-
+use Wagayatei;
 
 sub get_db {
     my $class = shift;
@@ -24,7 +22,7 @@ sub get_db {
     }
 }
 
-sub get_connect_info { container('conf')->{datasource}->{master} }
+sub get_connect_info { Wagayatei->config->{datasource}->{master} }
 
 sub get_dbi {
     my $connect_info = shift->get_connect_info;

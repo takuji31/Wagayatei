@@ -8,8 +8,6 @@ use Class::Accessor::Lite (
     rw  => [qw/ context valid_params /],
 );
 
-use FormValidator::Lite;
-
 sub new {
     my ( $class, $req, $context ) = @_;
 

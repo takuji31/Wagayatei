@@ -3,12 +3,16 @@ package  Wagayatei::DB::Schema;
 use strict;
 use warnings;
 
+
 use Teng::Schema::Declare;
 use Time::Piece::MySQL;
+use JSON;
 
     table{
         name 'genre';
-        pk 'id';
+        pk qw (
+        id
+        );
         columns qw(
             created_at
             updated_at
@@ -26,12 +30,14 @@ use Time::Piece::MySQL;
     };
     table{
         name 'pc';
-        pk 'id';
+        pk qw (
+        id
+        );
         columns qw(
             profile
             status
             name
-            rid
+            uuid
             created_at
             updated_at
             id
@@ -49,7 +55,9 @@ use Time::Piece::MySQL;
     };
     table{
         name 'pc_skill';
-        pk 'id';
+        pk qw (
+        id
+        );
         columns qw(
             skill_id
             rid
@@ -69,7 +77,9 @@ use Time::Piece::MySQL;
     };
     table{
         name 'skill';
-        pk 'id';
+        pk qw (
+        id
+        );
         columns qw(
             min
             max
@@ -87,11 +97,19 @@ use Time::Piece::MySQL;
         deflate qr/_at$/ => sub {
             shift->mysql_datetime;
         };
+        inflate qr/_data$/ => sub {
+            JSON->new->utf8->decode(shift);
+        };
+        deflate qr/_data$/ => sub {
+            JSON->new->utf8->encode(shift);
+        };
         row_class 'Wagayatei::Model::Skill';
     };
     table{
         name 'user';
-        pk 'id';
+        pk qw (
+        id
+        );
         columns qw(
             status
             twitter_id

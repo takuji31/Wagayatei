@@ -2,21 +2,29 @@
 :around content -> {
     <div class="row">
       <div class="column grid-16">
-            <h2>ユーザー登録</h2>
-            <p>
-                このWebサイトへのユーザー登録ができます。
-            </p>
-            <p>
-                ギルドメンバーがメンバーリストへ登録するにはユーザー登録が必須です。<br />
-                登録を行わない場合は閲覧しか行えません。
-            </p>
-          <form action="/user/register">
-            <fieldset>
-              <legend>登録情報</legend>
-              <label for="name">ニックネーム</label>
-              <input type="text" id="name" name="name" />
-            </fieldset>
-          </form>
+        <h2>ユーザー登録</h2>
+        <p>
+            このWebサイトへのユーザー登録ができます。
+        </p>
+        <p>
+            ギルドメンバーがメンバーリストへ登録するにはユーザー登録が必須です。<br />
+            登録を行わない場合は閲覧しか行えません。
+        </p>
+        <form action="" method="post">
+          <fieldset>
+            <legend>登録情報</legend>
+            <label for="nick_name">ニックネーム</label>
+            <input type="text" id="nick_name" name="nick_name" />
+            :error("nick_name")
+            <label for="pc_name">メインキャラの名前</label>
+            <input type="text" id="name" name="name"  />
+            :error("name")
+            <label for="profile">キャラクターの紹介文</label>
+            <textarea id="profile" name="profile" rows="10" cols="40"></textarea>
+            :error("profile")
+            <button type="submit">確認</button>
+          </fieldset>
+        </form>
       </div>
     </div>
 :}
