@@ -1,0 +1,33 @@
+:cascade layout
+:around content -> {
+<div class="row">
+  <div class="column grid-16">
+    <p>登録されているスキルの一覧です。間違ってたらおせーてください。</p>
+
+    : for $genres -> $genre {
+    : my $skills = $genre.skills.all()
+      <h3><: $genre.name :></h3>
+      <table class="my-table">
+        <thead>
+          <tr>
+            <th>名前</th>
+            <th>最高ランク</th>
+            <th>種族</th>
+          </tr>
+        </thead>
+        <tbody>
+        : for $skills -> $skill {
+          <tr>
+            <td><: $skill.name :></td>
+            <td><: $skill.max_rank :></td>
+            <td><: $skill.type  || '全種族' :></td>
+          </tr>
+        : }
+        </tbody>
+      </table>
+    : } else {
+    <span>登録されていません</span>
+    : }
+  </div>
+</div>
+: }
