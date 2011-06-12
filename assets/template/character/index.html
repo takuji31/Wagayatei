@@ -1,0 +1,10 @@
+:cascade layout
+:around content -> {
+<div class="row"> 
+  <div class="column grid-16">
+    <h2 class="title">キャラクター一覧</h2> 
+    :include character::include::character_table { pcs => $pcs };
+    : pager()
+  </div>
+</div> 
+: }

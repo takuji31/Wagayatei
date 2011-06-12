@@ -1,0 +1,22 @@
+:cascade layout
+:around content -> {
+<div class="row"> 
+  <div class="column grid-16">
+    <h2><: $pc.name :></h2>
+    <table class="my-table">
+      <tr>
+        <th>名前</th>
+        <td><: $pc.name :></td>
+      </tr>
+      <tr>
+        <th>種族</th>
+        <td><: $pc.type_name :></td>
+      </tr>
+      <tr>
+        <th>ランク</th>
+        <td><: $pc.rank_name :></td>
+      </tr>
+    </table>
+  </div>
+</div> 
+: }

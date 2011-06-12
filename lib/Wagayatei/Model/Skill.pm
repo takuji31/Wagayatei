@@ -8,7 +8,7 @@ sub all_rank {
     my $self = shift;
 
     my $conf = $self->config->{skill_rank};
-    my @rank_list = @$conf[$self->min..$self->max];
+    my @rank_list = @$conf[0..$self->max];
     return @rank_list;
 }
 
@@ -19,7 +19,7 @@ sub max_rank {
 
 sub min_rank {
     my $self = shift;
-    $self->config->{skill_rank}->[$self->max];
+    $self->config->{skill_rank}->[0];
 }
 
 sub type {

@@ -1,0 +1,30 @@
+<table class="my-table"> 
+  <tr> 
+    <th>ランク</th>
+    <th>名前</th>
+    <th>種族</th>
+    <th>メインキャラの名前</th>
+    <th>&nbsp;</th>
+  </tr>
+  :for $pcs -> $pc {
+    <tr>
+      <td><: $pc.rank_name :></td>
+      <td>
+        <a href="/character/show/<: $pc.uuid :>"><: $pc.name :></a>
+      </td>
+      <td><: $pc.type_name :></td>
+      <td><: $pc.main_char || "※メインキャラ" :></td>
+      <td>
+        <a href="/character/show/<: $pc.uuid :>">詳細</a>
+        <a href="/skill/show/<: $pc.uuid :>">スキルを見る</a>
+        :if ( $pc.user_id == $c.user.id ) {
+        <a href="/character/edit/<: $pc.uuid :>">基本情報編集</a>
+        <a href="/skill/edit/<: $pc.uuid :>">スキル編集</a>
+        <a href="/character/delete/<: $pc.uuid :>">削除</a>
+        : }
+      </td>
+    </tr>
+  : } else {
+    <td colspan="5">登録されてません</td>
+  : }
+</table> 

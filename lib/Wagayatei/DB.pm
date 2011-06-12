@@ -9,6 +9,7 @@ use Scope::Container;
 use Scope::Container::DBI;
 use Teng::Schema::Loader;
 use Wagayatei;
+__PACKAGE__->load_plugin('Pager');
 
 sub get_db {
     my $class = shift;
