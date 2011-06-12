@@ -1,487 +1,451 @@
 alchemy:
   -
     name: アルケミマスタリ
-    min:  0
+    max:  16
+  -
+    name: ウォーターアルケミマスタリ
+    max:  16
+  -
+    name: ファイアアルケミマスタリ
+    max:  16
+  -
+    name: ウィンドアルケミマスタリ
+    max:  16
+  -
+    name: アースアルケミマスタリ
+    max:  16
+  -
+    name: 錬成マスタリ
     max:  16
   -
     name: 合成
-    min:  0
-    max:  10
+    max:  16
   -
     name: 分解
-    min:  0
-    max:  10
+    max:  16
   -
     name: 金属変換
-    min:  0
     max:  16
   -
     name: マナフォーミング
-    min:  0
     max:  16
   -
     name: ゴーレム錬成
-    min:  0
     max:  16
   -
     name: 防護壁
-    min:  0
     max:  16
   -
     name: ライフドレイン
-    min:  0
     max:  16
   -
     name: ウォーターキャノン
-    min:  0
     max:  16
   -
     name: ウィンドブラスト
-    min:  0
-    max:  10
+    max:  16
   -
     name: フレイマー
-    min:  0
     max:  16
   -
     name: サンドバースト
-    min:  0
-    max:  10
+    max:  16
   -
     name: フローズンブラスト
-    min:  0
     max:  16
   -
     name: レインキャスティング
-    min:  0
     max:  16
   -
     name: スパーク
-    min:  0
     max:  16
   -
     name: ヒートバスター
-    min:  0
     max:  16
   -
     name: チェーンシリンダー
-    min:  0
     max:  16
 beast:
   -
     name: ヒューリーオブコンヌース
-    min:  0
     max:  15
     type_data: [E]
   -
     name: エルブンマジックミサイル
-    min:  0
     max:  15
     type_data: [E]
   -
     name: アーマーオブコンヌース
-    min:  0
     max:  15
     type_data: [E]
   -
     name: マインドオブコンヌース
-    min:  0
     max:  15
     type_data: [E]
   -
     name: シャープネスオブコンヌース
-    min:  0
     max:  15
     type_data: [E]
   -
     name: コンヌースヘビースタンダー
-    min:  0
     max:  15
     type_data: [E]
   -
     name: コンヌースナチュラルシールド
-    min:  0
     max:  15
     type_data: [E]
   -
     name: コンヌースマナリフレクター
-    min:  0
     max:  15
     type_data: [E]
   -
     name: デーモンオブピシス
-    min:  0
     max:  15
     type_data: [G]
   -
     name: ジャイアントフルスイング
-    min:  0
     max:  15
     type_data: [G]
   -
     name: シールドオブピシス
-    min:  0
     max:  15
     type_data: [G]
   -
     name: スペルオブピシス
-    min:  0
     max:  15
     type_data: [G]
   -
     name: ライフオブピシス
-    min:  0
     max:  15
     type_data: [G]
   -
     name: ピシスヘビースタンダー
-    min:  0
     max:  15
     type_data: [G]
   -
     name: ピシスナチュラルシールド
-    min:  0
     max:  15
     type_data: [G]
   -
     name: ピシスマナリフレクター
-    min:  0
     max:  15
     type_data: [G]
 combat:
   -
     name: アタック
-    min:  0
     max:  19
   -
     name: クリティカルヒット
-    min:  0
+    max:  16
+  -
+    name: ソードマスタリ
+    max:  16
+  -
+    name: ブラントマスタリ
+    max:  16
+  -
+    name: アックスマスタリ
+    max:  16
+  -
+    name: ランスマスタリ
     max:  16
   -
     name: スマッシュ
-    min:  0
     max:  19
   -
     name: ディフェンス
-    min:  0
     max:  19
   -
     name: カウンターアタック
-    min:  0
     max:  19
   -
+    name: ダウンアタック
+    max:  16
+  -
     name: ウィンドミル
-    min:  0
     max:  19
   -
     name: 突進
-    min:  0
-    max:  10
+    max:  16
   -
     name: 回避
-    min:  0
     max:  10
   -
+    name: 分身術
+    max:  16
+  -
     name: ファイナルヒット
-    min:  0
     max:  16
     type_data: [H]
   -
     name: ストンプ
-    min:  0
     max:  16
     type_data: [G]
   -
     name: ウィンドブレイカー
-    min:  0
     max:  16
     type_data: [G]
   -
     name: タウント
-    min:  0
     max:  16
     type_data: [G]
   -
-    name: レンジアタック
-    min:  0
+    name: ランスチャージ
     max:  16
-    type_data: [H,E]
+    type_data: [H, G]
+  -
+    name: ランスカウンター
+    max:  16
+    type_data: [H, G]
+  -
+    name: ボウマスタリ
+    max:  16
+    type_data: [H, E]
+  -
+    name: クロスボウマスタリ
+    max:  16
+    type_data: [H, E]
+  -
+    name: レンジアタック
+    max:  16
+    type_data: [H, E]
   -
     name: マグナムショット
-    min:  0
     max:  16
-    type_data: [H,E]
+    type_data: [H, E]
   -
     name: サポートショット
-    min:  0
     max:  16
-    type_data: [H,E]
+    type_data: [H, E]
   -
     name: クラッシュショット
-    min:  0
     max:  16
-    type_data: [H,E]
+    type_data: [H, E]
   -
     name: アローリボルバー
-    min:  0
     max:  16
     type_data: [H]
   -
     name: ミラージュミサイル
-    min:  0
     max:  16
     type_data: [E]
   -
     name: ファイナルショット
-    min:  0
     max:  16
     type_data: [E]
   -
     name: 投擲
-    min:  0
     max:  16
     type_data: [G]
 darkknight:
   -
     name: ソウルオブカオス
-    min:  0
     max:  15
     type_data: [H]
   -
     name: コントロールオブダークネス
-    min:  0
     max:  15
     type_data: [H]
   -
     name: ボディーオブカオス
-    min:  0
     max:  15
     type_data: [H]
   -
     name: ハンズオブカオス
-    min:  0
     max:  15
     type_data: [H]
   -
     name: ブレインオブカオス
-    min:  0
     max:  15
     type_data: [H]
   -
     name: ダークヘビースタンダー
-    min:  0
     max:  15
     type_data: [H]
   -
     name: ダークナチュラルシールド
-    min:  0
     max:  15
     type_data: [H]
   -
     name: ダークマナリフレクター
-    min:  0
     max:  15
     type_data: [H]
 god:
   -
     name: 光の覚醒
-    min:  0
     max:  15
   -
     name: スピアオブライト
-    min:  0
     max:  15
   -
     name: ヒューリーオブライト
-    min:  0
     max:  15
   -
     name: シャドウオブスピリット
-    min:  0
     max:  15
   -
     name: イクリプスオブウィングス
-    min:  0
     max:  15
   -
     name: レイジオブウィングス
-    min:  0
     max:  15
 life:
   -
     name: 休憩
-    min:  0
     max:  9
   -
     name: キャンプファイア
-    min:  0
     max:  8
   -
     name: 応急治療
-    min:  0
-    max:  8
+    max:  10
   -
     name: メイキングマスタリ
-    min:  0
     max:  16
   -
     name: 薬草学
-    min:  0
     max:  16
   -
     name: 紡織
-    min:  0
     max:  16
   -
     name: 裁縫
-    min:  0
     max:  19
   -
     name: 製錬
-    min:  0
     max: 16
   -
     name: 鍛冶
-    min:  0
     max:  19
   -
     name: 料理
-    min:  0
     max:  10
   -
     name: ポーション調合
-    min:  0
     max:  16
   -
     name: 釣り
-    min:  0
     max:  16
   -
     name: ハンディクラフト
-    min:  0
     max:  10
   -
     name: 鉱物採取
-    min:  0
     max:  16
   -
     name: 木工
-    min:  0
     max:  16
   -
     name: 音楽知識
-    min:  0
     max:  10
   -
     name: 楽器演奏
-    min:  0
+    max:  16
+  -
+    name: 幻惑の演奏
     max:  16
   -
     name: 作曲
-    min:  0
-    max:  9
+    max:  11
   -
     name: 野生動物調教
-    min:  0
-    max:  10
+    max:  16
 magic:
   -
     name: アイスボルト
-    min:  0
     max:  16
   -
     name: ファイアボルト
-    min:  0
     max:  16
   -
     name: ライトニングボルト
-    min:  0
     max:  16
   -
     name: アイススピア
-    min:  0
     max:  16
   -
     name: ファイアボール
-    min:  0
     max:  16
   -
     name: サンダー
-    min:  0
     max:  16
   -
     name: ブレイズ
-    min:  0
+    max:  16
+  -
+    name: ヘイルストーム
     max:  16
   -
     name: マジックマスタリ
-    min:  0
+    max:  16
+  -
+    name: ボルトマスタリ
+    max:  16
+  -
+    name: アイスマスタリ
+    max:  16
+  -
+    name: ライトニングマスタリ
+    max:  16
+  -
+    name: ファイアマスタリ
+    max:  16
+  -
+    name: ボルト魔法合成
     max:  16
   -
     name: ヒーリング
-    min:  0
     max:  16
   -
     name: パーティヒーリング
-    min:  0
     max:  16
   -
     name: エンチャント
-    min:  0
     max:  16
   -
+    name: メディテーション
+    max:  7
+  -
     name: マナシールド
-    min:  0
-    max:  10
+    max:  16
   -
     name: ナチュラルマジックシールド
-    min:  0
-    max:  10
+    max:  16
   -
     name: アイスマジックシールド
-    min:  0
-    max:  10
+    max:  16
   -
     name: ファイアマジックシールド
-    min:  0
-    max:  10
+    max:  16
   -
     name: ライトニングマジックシールド
-    min:  0
-    max:  10
+    max:  16
 paladin:
   -
     name: スピリットオブオーダー
-    min:  0
     max:  15
     type_data: [H]
   -
     name: パワーオブオーダー
-    min:  0
     max:  15
     type_data: [H]
   -
     name: アイオブオーダー
-    min:  0
     max:  15
     type_data: [H]
   -
     name: ソードオブオーダー
-    min:  0
     max:  15
     type_data: [H]
   -
     name: パラディンヘビースタンダー
-    min:  0
     max:  15
     type_data: [H]
   -
     name: パラディンナチュラルシールド
-    min:  0
     max:  15
     type_data: [H]
   -
     name: パラディンマナリフレクター
-    min:  0
     max:  15
     type_data: [H]
