@@ -74,7 +74,10 @@ sub do_register_do {
 sub do_logout {
     my ( $class, $c ) = @_;
     $c->session->remove('user_id');
-    $c->redirect('/');
+    my $back_to = $c->req->param('back_to') || "http://@{$c->req->uri->host}/";
+    my $uri = URI->new($back_to);
+    my $redirect_uri = $uri->host eq $c->req->uri->host ? $uri->as_string : "http://@{$c->req->uri->host}/";
+    $c->redirect($redirect_uri);
 }
 
 1;

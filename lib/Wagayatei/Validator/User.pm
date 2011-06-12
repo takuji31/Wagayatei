@@ -8,8 +8,9 @@ sub register {
 
     $class->check(
         nick_name => ['NOT_NULL'],
-        "name" => ['NOT_NULL'],
-        "profile" => ['NOT_NULL'],
+        name      => ['NOT_NULL'],
+        profile   => ['NOT_NULL'],
+        type      => [[CHOICE => qw(H E G)]],
     );
 }
 

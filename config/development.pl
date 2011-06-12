@@ -16,7 +16,7 @@ return +{
             syntax    => 'Kolon',
             type      => 'html',
             suffix    => '.html',
-            function  => {nl2br => \&nl2br},
+            function  => view_functions(),
         },
     },
     datasource => +{

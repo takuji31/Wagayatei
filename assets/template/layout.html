@@ -32,9 +32,15 @@
         </hgroup>
       </div>
       <div class="column grid-6">
+        <p class="welcome">
         :if( $user && $user.name ) {
-        <p class="welcome">ようこそ！ <: $user.name :>さん</p>
-        :}
+        ようこそ！ <: $user.name :>さん<br />
+        <a href="/user/logout?back_to=<: $c.req.uri.as_string | uri :>">ログアウト</a>
+        :} else {
+        ログインしていません<br />
+        <a href="/oauth/?back_to=<: $c.req.uri.as_string | uri :>"><img src="/img/sign-in-with-twitter-l.png" alt="Sign in with Twitter" /></a>
+        : }
+        </p>
       </div>
     </div>
     <div class="row">
@@ -46,16 +52,12 @@
           <li>
             <a href="/character/">Character Sheet</a>
           </li>
-          :if ( $user ) {
-          <li><a href="/user/logout">Logout</a></li>
-          : } else {
-          <li><a href="/oauth/">Login</a></li>
-          : }
         </ul>
       </nav>
     </div>
   </header>
   <div id="content">
+    :local_navi()
     :block content -> { 
         Something wrong!
     :}
@@ -75,3 +77,41 @@
 <p class="error"><: $validator.get_error_messages_from_param($key)[0] :></p>
 :}
 :}
+:macro pager ->() {
+
+: if ($pager) {
+<div class="column grid-16">
+  : if ($pager.previous_page ) {
+  <a href="<: $c.uri_with(page => $pager.previous_page ) :>">←Prev</a>
+  : } else {
+  <span class="">←Prev</span>
+  : }
+
+  : if ( $pager.next_page ) {
+  <a href="<: $c.uri_with(page => $pager.next_page ) :>">Next→</a>
+  : } else {
+  <span class="">Next→</span>
+  : }
+</div>
+: }
+:}
+:macro local_navi -> () {
+: my $maps = $c.site_map[$c.controller];
+: if ( $maps ) {
+    <div class="row">
+      <nav class="local-navi">
+      <div class="left">&gt;</div>
+      <ul class="h-menu">
+      :for $maps -> $map {
+      :  my $cond_sub = $map.cond_sub;
+      :  if(!defined($cond_sub) || $cond_sub($c)) {
+        <li>
+          <a href="<: $map.path :>"><: $map.label :></a>
+        </li>
+      : }
+      : }
+      </ul>
+      </nav>
+    </div>
+: }
+: }

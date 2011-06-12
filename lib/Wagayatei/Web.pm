@@ -28,7 +28,7 @@ __PACKAGE__->add_trigger(
             my $user = $db->single('user',{ id => $user_id, status => { '!=' => 'deleted' } });
             $self->stash->{user} = $user;
         }
-    }, 
+    },
 
 );
 
@@ -41,5 +41,20 @@ sub validator {
 }
 
 sub db { Wagayatei::DB->get_db }
+
+use Chiffon::Config::Simple;
+
+sub site_map {
+    my $self = shift;
+    my $conf = Chiffon::Config::Simple->load($self, environment => 'site_map');
+    my $class = ref $self ? ref $self : $self;
+    {
+        no strict 'refs';
+        no warnings 'redefine';
+        *{"$class\::site_map"} = sub{$conf};
+    }
+    return $conf;
+}
+
 1;
 

@@ -15,12 +15,19 @@ use Wagayatei::DB;
 
 sub get_consumer {
     my ( $class, $c ) = @_;
+    my $callback = URI->new(join '','http://',$c->req->uri->host,'/oauth/callback');
+    if ( $c->action eq 'index' ) {
+        my $back_to = $c->req->param('back_to') || "http://$c->req->uri->host/";
+        my $uri = URI->new($back_to);
+        my $redirect_uri = $uri->host eq $c->req->uri->host ? $uri->as_string : "http://$c->req->uri->host/";
+        $callback->query_form(back_to => $redirect_uri);
+    }
     my $consumer = OAuth::Lite::Consumer->new(
         %{pit_get('wagayatei', require => { consumer_key => 'Twitter consumer key', consumer_secret => 'Twitter consumer secret' })},
         request_token_path => 'http://twitter.com/oauth/request_token',
         access_token_path  => 'http://twitter.com/oauth/access_token',
         authorize_path     => 'http://twitter.com/oauth/authenticate',
-        callback_url => join '','http://',$c->req->uri->host,'/oauth/callback',
+        callback_url => $callback->as_string,
     );
     return $consumer;
 }
@@ -45,6 +52,7 @@ sub do_callback {
     my $consumer = $class->get_consumer($c);
     my $oauth_token    = $c->req->param('oauth_token');
     my $oauth_verifier = $c->req->param('oauth_verifier');
+    my $back_to = $c->req->param('back_to') || "http://$c->req->uri->host/";
 
     my $db = Wagayatei::DB->get_db;
 
@@ -101,7 +109,7 @@ sub do_callback {
     if ( $user->status eq 'authenticated' ) {
         $c->redirect('/user/register');
     }
-    $c->redirect('/');
+    $c->redirect($back_to);
 }
 
 1;
