@@ -53,7 +53,19 @@ sub do_register_do {
             my $now = localtime;
             $c->user->update({status => 'created', name => $c->req->param('nick_name')});
             my $db = Wagayatei::DB->get_db;
-            $db->insert('pc',{uuid => $class->create_uuid, user_id => $c->user->id, name => $c->req->param('name'), profile => $c->req->param('profile'), main_fg => 'yes', status => 'public', created_at => $now, updated_at => $now});
+            $db->insert(
+                'pc' => {
+                    uuid => $class->create_uuid,
+                    user_id => $c->user->id,
+                    name => $c->req->param('name'),
+                    type => $c->req->param('type'),
+                    profile => $c->req->param('profile'),
+                    main_fg => 'yes',
+                    status => 'public',
+                    created_at => $now,
+                    updated_at => $now
+                }
+            );
         }
     }
     $c->redirect('/');

@@ -11,6 +11,7 @@
             <input type="hidden" name="nick_name" />
             <input type="hidden" name="name"  />
             <input type="hidden" name="profile"  />
+            <input type="hidden" name="type"  />
         <table class="my-table">
             <tbody>
               <tr>
@@ -20,6 +21,10 @@
               <tr>
                 <th>メインキャラの名前</th>
                 <td><: $req.param('name') :></td>
+              </tr>
+              <tr>
+                <th>種族</th>
+                <td><: type_name($req.param('type')) :></td>
               </tr>
               <tr>
                 <th>紹介文</th>
