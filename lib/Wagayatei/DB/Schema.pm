@@ -14,18 +14,10 @@ use JSON;
         id
         );
         columns qw(
-            created_at
-            updated_at
             name
-            label
             id
+            name_en
         );
-        inflate qr/_at$/ => sub {
-            Time::Piece->from_mysql_datetime(shift);
-        };
-        deflate qr/_at$/ => sub {
-            shift->mysql_datetime;
-        };
         row_class 'Wagayatei::Model::Genre';
     };
     table{
@@ -42,6 +34,7 @@ use JSON;
             updated_at
             id
             user_id
+            type
             main_fg
             rank
         );
@@ -60,7 +53,7 @@ use JSON;
         );
         columns qw(
             skill_id
-            rid
+            uuid
             created_at
             updated_at
             pc_id
@@ -81,11 +74,10 @@ use JSON;
         id
         );
         columns qw(
-            min
             max
             name
-            rid
             type_data
+            uuid
             genre_id
             created_at
             updated_at
