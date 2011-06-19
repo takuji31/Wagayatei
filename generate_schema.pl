@@ -18,10 +18,10 @@ my $tables = [$inspector->tables()];
 
 my $xslate = Text::Xslate->new(
     path => Data::Section::Simple->new->get_data_section,
-    function => { column_exists => \&column_exists, to_array => \&to_array },
+    function => {column_exists => \&column_exists, to_array => \&to_array, camelize => \&Teng::Schema::camelize},
 );
 
-my $schema = $xslate->render('schema',{ tables => $tables, camelize => \&Teng::Schema::camelize });
+my $schema = $xslate->render('schema',{tables => $tables});
 
 my $path = dir('./')->subdir('lib/Wagayatei/DB/');
 $path->mkpath;
@@ -85,7 +85,7 @@ use JSON;
             JSON->new->utf8->encode(shift);
         };
         : }
-        row_class 'Wagayatei::Model::<: $camelize($table.name()) :>';
+        row_class 'Wagayatei::Model::<: camelize($table.name()) :>';
     };
 :}
 
