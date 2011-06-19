@@ -50,7 +50,6 @@ sub do_register_do {
         my $validator = $c->validator("User");
         $validator->register;
         unless( $validator->has_error ) {
-            my $now = localtime;
             $c->user->update({status => 'created', name => $c->req->param('nick_name')});
             my $db = Wagayatei::DB->get_db;
             $db->insert(
@@ -62,8 +61,6 @@ sub do_register_do {
                     profile => $c->req->param('profile'),
                     main_fg => 'yes',
                     status => 'public',
-                    created_at => $now,
-                    updated_at => $now
                 }
             );
         }

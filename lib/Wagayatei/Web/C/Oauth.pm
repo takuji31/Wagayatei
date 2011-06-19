@@ -81,14 +81,11 @@ sub do_callback {
     Carp::croak("Can't get Twitter id!") unless defined $id;
     my $user = $db->single('user', {twitter_id => $id});
     unless ( $user ) {
-        my $now = localtime;
         $user = $db->insert(
             'user',
             {
                 twitter_id => $id,
                 uuid       => $class->create_uuid,
-                created_at => $now,
-                updated_at => $now,
             }
         );
         $user->refetch;
