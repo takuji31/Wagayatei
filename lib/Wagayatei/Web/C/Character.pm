@@ -20,6 +20,20 @@ our $CHARACTER_ORDER = [
     },
 ];
 
+__PACKAGE__->add_trigger(
+    before_action => sub {
+        my ($class, $c) = @_;
+        my $action = $c->action;
+        #特定のアクション以外はスルー
+        return unless grep /^$action$/, qw(add add_confirm add_do add_done my edit edit_confirm edit_do edit_done delete delete_do delete_done );
+
+        #ログインしてなかったらリダイレクト
+        $c->redirect('/character/') unless $c->user;
+        #登録がまだのユーザーはリダイレクト
+        $c->redirect('/character/') unless ( $c->user->status eq 'authenticated' || $c->user->status eq 'created' );
+    },
+);
+
 sub do_index {
     my ( $class, $c ) = @_;
     my $page = $c->req->param('page') || 1;
