@@ -9,6 +9,7 @@ sub add {
     $class->check(
         name      => ['NOT_NULL'],
         profile   => ['NOT_NULL'],
+        sex       => [[CHOICE => qw(male female)]],
         type      => [[CHOICE => qw(H E G)]],
     );
 }

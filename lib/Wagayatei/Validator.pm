@@ -11,7 +11,7 @@ use Class::Accessor::Lite (
 sub new {
     my ( $class, $req, $context ) = @_;
 
-    my $self = $class->SUPER::new( $req  );
+    my $self = $class->SUPER::new( $req );
     $self->context( $context ) if $context;
     $self->valid_params( {} );
     $self;
@@ -33,8 +33,8 @@ sub valid_data {
     die "invalid request" if $self->has_error;
 
     return {
-        map { $_ => $self->req->param($_) }
-          grep { defined $self->req->param($_) }
+        map { $_ => $self->{query}->param($_) }
+          grep { defined $self->{query}->param($_) }
           keys %{ $self->valid_params }
     };
 }

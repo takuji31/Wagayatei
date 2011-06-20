@@ -21,8 +21,13 @@ sub type_name {
     return Wagayatei->config->{type_name}->{$type};
 }
 
+sub sex_name {
+    my $sex = shift;
+    return Wagayatei->config->{sex_name}->{$sex};
+}
+
 sub view_functions {
-    return {nl2br => \&nl2br, type_name => \&type_name};
+    return {nl2br => \&nl2br, type_name => \&type_name, sex_name => \&sex_name};
 }
 
 1;

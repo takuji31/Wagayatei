@@ -1,35 +1,50 @@
+:for $pcs -> $pc {
+<h3 class="char-name"><: $pc.name :></h3>
+:if ( $pc.user_id == $c.user.id && $display_menu ) {
+<ul class="h-menu">
+  <li><a href="/character/edit/<: $pc.uuid :>">編集</a></li>
+  <li><a href="/skill/edit/<: $pc.uuid :>">スキル編集</a></li>
+  <li><a href="/character/delete/<: $pc.uuid :>">削除</a></li>
+</ul>
+<br />
+: }
 <table class="my-table"> 
-  <tr> 
-    <th>ランク</th>
-    <th>名前</th>
-    <th>種族</th>
-    <th>メインキャラの名前</th>
-    <th>&nbsp;</th>
-  </tr>
-  :for $pcs -> $pc {
     <tr>
-      <td><: $pc.rank_name :></td>
-      <td>
-        <a href="/character/show/<: $pc.uuid :>"><: $pc.name :></a>
-      </td>
+      <td rowspan="6">キャラ画像</td>
+    </tr>
+    <tr>
+      <th>種族</th>
       <td><: $pc.type_name :></td>
+    </tr>
+    <tr>
+      <th>ランク</th>
+      <td><: $pc.rank_name :></td>
+    </tr>
+    <tr>
+      <th>メインキャラ</th>
       : my $main_char = $pc.main_char;
       : if ( $main_char ) {
       <td><a href="/character/show/<: $main_char.uuid :>"><: $main_char.name :></a></td>
       : } else {
       <td>※メインキャラ</td>
       : }
-      <td>
-        <a href="/character/show/<: $pc.uuid :>">詳細</a>
-        <a href="/skill/show/<: $pc.uuid :>">スキルを見る</a>
-        :if ( $pc.user_id == $c.user.id ) {
-        <a href="/character/edit/<: $pc.uuid :>">基本情報編集</a>
-        <a href="/skill/edit/<: $pc.uuid :>">スキル編集</a>
-        <a href="/character/delete/<: $pc.uuid :>">削除</a>
-        : }
-      </td>
     </tr>
-  : } else {
-    <td colspan="5">登録されてません</td>
-  : }
+    <tr>
+      <th>職業</th>
+      <td>[職業]</td>
+    </tr>
+    <tr>
+      <th>性別</th>
+      <td><: $pc.sex_name :></td>
+    </tr>
+    <tr>
+      <th colspan="3">紹介文</th>
+    </tr>
+    <tr>
+      <td colspan="3"><: $pc.profile | nl2br :></td>
+    </tr>
 </table> 
+</table> 
+: } else {
+<p>登録されてません</p>
+: }

@@ -10,28 +10,16 @@
             ギルドメンバーがメンバーリストへ登録するにはユーザー登録が必須です。<br />
             登録を行わない場合は閲覧しか行えません。
         </p>
+        :block form | fillinform($req) -> {
         <form action="" method="post">
           <fieldset>
-            <legend>登録情報</legend>
+              <legend>あなたについて</legend>
             <label for="nick_name">ニックネーム</label>
             <input type="text" id="nick_name" name="nick_name" />
             :error("nick_name")
-            <label for="pc_name">メインキャラの名前</label>
-            <input type="text" id="name" name="name"  />
-            :error("name")
-            <label for="profile">キャラクターの紹介文</label>
-            <textarea id="profile" name="profile" rows="10" cols="40"></textarea>
-            :error("profile")
-            <label for="type">種族</label>
-            <select id="type" name="type">
-              <option value="H">人間</option>
-              <option value="E">エルフ</option>
-              <option value="G">ジャイアント</option>
-            </select>
-            :error("type")
-            <button type="submit">確認</button>
           </fieldset>
-        </form>
+            :character_form("メインキャラについて","登録")
+        : }
       </div>
     </div>
 :}

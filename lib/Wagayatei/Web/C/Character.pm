@@ -113,6 +113,7 @@ sub do_add_do {
                     user_id => $c->user->id,
                     name => $c->req->param('name'),
                     type => $c->req->param('type'),
+                    sex  => $c->req->param('sex'),
                     profile => $c->req->param('profile'),
                     main_fg => 'no',
                     status => 'public',

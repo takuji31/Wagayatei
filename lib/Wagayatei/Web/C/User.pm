@@ -33,39 +33,21 @@ sub do_register {
         if( $validator->has_error ) {
             $c->stash->{validator} = $validator;
         } else {
-            $c->action('confirm');
-            $class->do_confirm($c);
-        }
-    }
-}
-
-sub do_confirm {
-    my ( $class, $c ) = @_;
-}
-
-sub do_register_do {
-    my ( $class, $c ) = @_;
-
-    if( $c->req->is_post_request ) {
-        my $validator = $c->validator("User");
-        $validator->register;
-        unless( $validator->has_error ) {
-            $c->user->update({status => 'created', name => $c->req->param('nick_name')});
+            my $data = $validator->valid_data;
+            $c->user->update({status => 'created', name => delete $data->{nick_name}});
             my $db = Wagayatei::DB->get_db;
             $db->insert(
                 'pc' => {
                     uuid => $class->create_uuid,
                     user_id => $c->user->id,
-                    name => $c->req->param('name'),
-                    type => $c->req->param('type'),
-                    profile => $c->req->param('profile'),
                     main_fg => 'yes',
                     status => 'public',
+                    %$data,
                 }
             );
+            $c->redirect('/');
         }
     }
-    $c->redirect('/');
 }
 
 sub do_logout {

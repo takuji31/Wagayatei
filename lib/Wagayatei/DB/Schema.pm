@@ -29,6 +29,7 @@ use JSON;
             profile
             status
             name
+            sex
             uuid
             created_at
             updated_at

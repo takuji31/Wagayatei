@@ -14,6 +14,7 @@ return +{
         {
             path => '/character/add',
             label => 'キャラクター追加',
+            cond_sub => sub{ shift->user ? 1:0 },
         },
         {
             path => '/character/my',

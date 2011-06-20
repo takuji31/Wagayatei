@@ -4,6 +4,12 @@ use warnings;
 
 use parent 'Wagayatei::Model';
 
+sub sex_name {
+    my $self = shift;
+    my $label = $self->config->{sex_name};
+    return $label->{$self->sex};
+}
+
 sub type_name {
     my $self = shift;
     my $label = $self->config->{type_name};

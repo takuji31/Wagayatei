@@ -115,3 +115,28 @@
     </div>
 : }
 : }
+:macro character_form -> ($title,$label) {
+<fieldset>
+<legend><: $title :></legend>
+<label for="name">キャラの名前</label>
+<input type="text" id="name" name="name"  />
+:error("name")
+<label for="sex">性別</label>
+<select id="sex" name="sex">
+  <option value="male">男性</option>
+  <option value="female">女性</option>
+</select>
+:error("sex")
+<label for="profile">キャラクターの紹介文</label>
+<textarea id="profile" name="profile" rows="10" cols="40"></textarea>
+:error("profile")
+<label for="type">種族</label>
+<select id="type" name="type">
+  <option value="H">人間</option>
+  <option value="E">エルフ</option>
+  <option value="G">ジャイアント</option>
+</select>
+:error("type")
+<button type="submit"><: $label || '登録' :></button>
+</fieldset>
+:}

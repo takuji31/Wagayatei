@@ -71,5 +71,9 @@ return +{
         master => 'ギルドマスター',
         sub    => 'サブマスター',
     },
+    sex_name => {
+        male => '男性',
+        female => '女性',
+    },
 };
 
