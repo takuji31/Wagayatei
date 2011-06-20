@@ -45,7 +45,7 @@ sub do_register {
                     %$data,
                 }
             );
-            $c->redirect('/');
+            $c->redirect('/character/my');
         }
     }
 }
