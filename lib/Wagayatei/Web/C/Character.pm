@@ -25,7 +25,7 @@ __PACKAGE__->add_trigger(
         my ($class, $c) = @_;
         my $action = $c->action;
         #特定のアクション以外はスルー
-        return unless grep /^$action$/, qw(add add_confirm add_do add_done my edit edit_confirm edit_do edit_done delete delete_do delete_done );
+        return unless grep /^$action$/, qw(add my edit delete);
 
         #ログインしてなかったらリダイレクト
         $c->redirect('/character/') unless $c->user;
@@ -89,42 +89,20 @@ sub do_add {
         if( $validator->has_error ) {
             $c->stash->{validator} = $validator;
         } else {
-            $c->action('add_confirm');
-            $class->do_add_confirm($c);
-        }
-    }
-
-}
-
-sub do_add_confirm {
-    my ( $class, $c ) = @_;
-}
-
-sub do_add_do {
-    my ( $class, $c ) = @_;
-
-    if( $c->req->is_post_request ) {
-        my $validator = $c->validator("Character");
-        $validator->add;
-        unless( $validator->has_error ) {
             my $db = Wagayatei::DB->get_db;
             $db->insert(
                 'pc' => {
+                    %{$validator->valid_data},
                     user_id => $c->user->id,
-                    name => $c->req->param('name'),
-                    type => $c->req->param('type'),
-                    sex  => $c->req->param('sex'),
-                    profile => $c->req->param('profile'),
                     main_fg => 'no',
                     status => 'public',
                 }
             );
+            $c->redirect('/character/my');
         }
     }
-    $c->redirect('/character/my');
+
 }
-
-
 
 sub do_skill_list {
     my ( $class, $c ) = @_;
