@@ -1,0 +1,36 @@
+:cascade layout;
+:around content -> {
+    <div class="row">
+      <div class="column grid-16">
+        <h2>キャラクター追加</h2>
+        <p>
+            この内容でいいですか？よければ登録ボタンを押してください。
+        </p>
+        :block form | fillinform($req) {
+        <form action="/character/add_do" method="post">
+            <input type="hidden" name="name"  />
+            <input type="hidden" name="profile"  />
+            <input type="hidden" name="type"  />
+        <table class="my-table">
+            <tbody>
+              <tr>
+                <th>メインキャラの名前</th>
+                <td><: $req.param('name') :></td>
+              </tr>
+              <tr>
+                <th>種族</th>
+                <td><: type_name($req.param('type')) :></td>
+              </tr>
+              <tr>
+                <th>紹介文</th>
+                <td><: $req.param('profile') | nl2br :></td>
+              </tr>
+            </tbody>
+        </table>
+        <div class="submit"><button type="submit">登録</button></div>
+        </form>
+        :}
+      </div>
+    </div>
+:}
+

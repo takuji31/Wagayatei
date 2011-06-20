@@ -80,6 +80,51 @@ sub do_show {
     $c->stash->{pc} = $pc;
 }
 
+
+sub do_add {
+    my ( $class, $c ) = @_;
+    if( $c->req->is_post_request ) {
+        my $validator = $c->validator("Character");
+        $validator->add;
+        if( $validator->has_error ) {
+            $c->stash->{validator} = $validator;
+        } else {
+            $c->action('add_confirm');
+            $class->do_add_confirm($c);
+        }
+    }
+
+}
+
+sub do_add_confirm {
+    my ( $class, $c ) = @_;
+}
+
+sub do_add_do {
+    my ( $class, $c ) = @_;
+
+    if( $c->req->is_post_request ) {
+        my $validator = $c->validator("Character");
+        $validator->add;
+        unless( $validator->has_error ) {
+            my $db = Wagayatei::DB->get_db;
+            $db->insert(
+                'pc' => {
+                    user_id => $c->user->id,
+                    name => $c->req->param('name'),
+                    type => $c->req->param('type'),
+                    profile => $c->req->param('profile'),
+                    main_fg => 'no',
+                    status => 'public',
+                }
+            );
+        }
+    }
+    $c->redirect('/character/my');
+}
+
+
+
 sub do_skill_list {
     my ( $class, $c ) = @_;
     my $genres = $c->db->search('genre',{},{order_by => {id => 'asc'}});
