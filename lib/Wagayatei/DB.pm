@@ -10,6 +10,7 @@ use Scope::Container;
 use Scope::Container::DBI;
 use Teng::Schema::Loader;
 use Time::Piece;
+use Data::GUID;
 
 use Wagayatei;
 
@@ -47,6 +48,21 @@ before 'insert', 'fast_insert' => sub {
             if( grep /^$column$/, @$columns ) {
                 $row_data->{$column} = $now;
             }
+        }
+        if( grep /^uuid$/, @$columns ) {
+            $row_data->{uuid} = Data::GUID->guid_hex;
+        }
+    }
+};
+
+before 'update' => sub {
+    my ($self, $table_name, $row_data) = @_;
+    my $table = $self->schema->get_table($table_name);
+    if ( $table ) {
+        my $columns = $table->columns;
+        my $now = localtime;
+        if( grep /^updated_at$/, @$columns ) {
+            $row_data->{updated_at} = $now;
         }
     }
 };
