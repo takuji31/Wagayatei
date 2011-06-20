@@ -30,7 +30,8 @@ __PACKAGE__->add_trigger(
         #ログインしてなかったらリダイレクト
         $c->redirect('/character/') unless $c->user;
         #登録がまだのユーザーはリダイレクト
-        $c->redirect('/character/') unless ( $c->user->status eq 'authenticated' || $c->user->status eq 'created' );
+        #$c->redirect('/character/') if ( $c->user->status eq 'authenticated' || $c->user->status eq 'created' );
+        $c->redirect('/character/') if ( $c->user->status eq 'authenticated' );
     },
 );
 
