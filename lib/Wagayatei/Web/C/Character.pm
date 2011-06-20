@@ -34,6 +34,20 @@ __PACKAGE__->add_trigger(
     },
 );
 
+__PACKAGE__->add_trigger(
+    before_action => sub {
+        my ($class, $c, $uuid) = @_;
+        my $action = $c->action;
+        #特定のアクション以外はスルー
+        return unless grep /^$action$/, qw(edit delete);
+
+        $c->redirect('/character/') unless $uuid;
+        my $pc = $c->db->single(pc => {uuid => $uuid, user_id => $c->user->id});
+        $c->redirect('/character/') unless $pc;
+        $c->stash->{pc} = $pc;
+    },
+);
+
 sub do_index {
     my ( $class, $c ) = @_;
     my $page = $c->req->param('page') || 1;
@@ -105,11 +119,8 @@ sub do_add {
 }
 
 sub do_edit {
-    my ( $class, $c, $uuid ) = @_;
-    $c->redirect('/character/') unless $uuid;
-    my $pc = $c->db->single(pc => {uuid => $uuid});
-    $c->redirect('/character/') unless $pc;
-    $c->stash->{pc} = $pc;
+    my ($class, $c, $uuid) = @_;
+    my $pc = $c->stash->{pc};
     if( $c->req->is_post_request ) {
         my $validator = $c->validator("Character");
         $validator->edit;
