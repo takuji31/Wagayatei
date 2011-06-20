@@ -1,0 +1,17 @@
+:cascade layout;
+:around content -> {
+    <div class="row">
+      <div class="column grid-16">
+        <h2>キャラクター削除</h2>
+        <p>
+            キャラクターを削除します、よろしいですか？
+        </p>
+        <p>削除するキャラクター：<: $pc.name :></p>
+        <form action="" method="post">
+            <button type="submit">はい</button>
+            <a href="/character/my" class="btn">いいえ</a>
+        </form>
+      </div>
+    </div>
+:}
+

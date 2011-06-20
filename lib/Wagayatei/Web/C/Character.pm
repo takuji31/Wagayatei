@@ -134,6 +134,16 @@ sub do_edit {
 
 }
 
+sub do_delete {
+    my ($class, $c, $uuid) = @_;
+    my $pc = $c->stash->{pc};
+    if( $c->req->is_post_request ) {
+        $pc->delete;
+        $c->redirect('/character/my?delete=done');
+    }
+
+}
+
 sub do_skill_list {
     my ( $class, $c ) = @_;
     my $genres = $c->db->search('genre',{},{order_by => {id => 'asc'}});
