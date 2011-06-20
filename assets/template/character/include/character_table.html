@@ -4,7 +4,9 @@
 <ul class="h-menu">
   <li><a href="/character/edit/<: $pc.uuid :>">編集</a></li>
   <li><a href="/skill/edit/<: $pc.uuid :>">スキル編集</a></li>
+:if ( $pc.main_fg == 'no' ) {
   <li><a href="/character/delete/<: $pc.uuid :>">削除</a></li>
+: }
 </ul>
 <br />
 : }

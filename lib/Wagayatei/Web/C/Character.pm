@@ -137,6 +137,7 @@ sub do_edit {
 sub do_delete {
     my ($class, $c, $uuid) = @_;
     my $pc = $c->stash->{pc};
+    $c->redirect('/character/my') if $pc->main_fg eq 'yes';
     if( $c->req->is_post_request ) {
         $pc->delete;
         $c->redirect('/character/my?delete=done');
