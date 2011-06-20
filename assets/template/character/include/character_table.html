@@ -13,7 +13,12 @@
         <a href="/character/show/<: $pc.uuid :>"><: $pc.name :></a>
       </td>
       <td><: $pc.type_name :></td>
-      <td><: $pc.main_char || "※メインキャラ" :></td>
+      : my $main_char = $pc.main_char;
+      : if ( $main_char ) {
+      <td><a href="/character/show/<: $main_char.uuid :>"><: $main_char.name :></a></td>
+      : } else {
+      <td>※メインキャラ</td>
+      : }
       <td>
         <a href="/character/show/<: $pc.uuid :>">詳細</a>
         <a href="/skill/show/<: $pc.uuid :>">スキルを見る</a>
