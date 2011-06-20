@@ -14,7 +14,7 @@ use Data::GUID;
 
 use Wagayatei;
 
-__PACKAGE__->load_plugin('Pager');
+__PACKAGE__->load_plugin('Pager','BulkInsert');
 
 sub get_db {
     my $class = shift;
@@ -55,6 +55,26 @@ before 'insert', 'fast_insert' => sub {
     }
 };
 
+before 'bulk_insert' => sub {
+    my ($self, $table_name, $row_data) = @_;
+    my $table = $self->schema->get_table($table_name);
+    if ( $table ) {
+        my $columns = $table->columns;
+        my $now = localtime;
+        for my $column (qw(created_at updated_at)) {
+            if( grep /^$column$/, @$columns ) {
+                for my $row ( @$row_data ) {
+                    $row->{$column} = $now;
+                }
+            }
+        }
+        if( grep /^uuid$/, @$columns ) {
+            for my $row ( @$row_data ) {
+                $row->{uuid} = Data::GUID->guid_hex;
+            }
+        }
+    }
+};
 before 'update' => sub {
     my ($self, $table_name, $row_data) = @_;
     my $table = $self->schema->get_table($table_name);
