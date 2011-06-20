@@ -55,7 +55,7 @@ before 'insert', 'fast_insert' => sub {
     }
 };
 
-before 'bulk_insert' => sub {
+sub bulk_insert_with_trigger {
     my ($self, $table_name, $row_data) = @_;
     my $table = $self->schema->get_table($table_name);
     if ( $table ) {
@@ -74,6 +74,7 @@ before 'bulk_insert' => sub {
             }
         }
     }
+    $self->bulk_insert($table_name => $row_data);
 };
 before 'update' => sub {
     my ($self, $table_name, $row_data) = @_;
