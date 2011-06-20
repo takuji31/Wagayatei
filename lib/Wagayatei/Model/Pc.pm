@@ -25,7 +25,7 @@ sub rank_name {
 sub main_char {
     my $self = shift;
     return if $self->main_fg eq 'yes';
-    $self->db->single('pc' => {id => {'!=' => $self->id}, main_fg => 'yes'});
+    $self->db->single('pc' => {id => {'!=' => $self->id}, user_id => $self->user_id, main_fg => 'yes'});
 }
 
 1;
