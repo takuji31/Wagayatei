@@ -104,6 +104,25 @@ sub do_add {
 
 }
 
+sub do_edit {
+    my ( $class, $c, $uuid ) = @_;
+    $c->redirect('/character/') unless $uuid;
+    my $pc = $c->db->single(pc => {uuid => $uuid});
+    $c->redirect('/character/') unless $pc;
+    $c->stash->{pc} = $pc;
+    if( $c->req->is_post_request ) {
+        my $validator = $c->validator("Character");
+        $validator->edit;
+        if( $validator->has_error ) {
+            $c->stash->{validator} = $validator;
+        } else {
+            $pc->update($validator->valid_data);
+            $c->stash->{done} = 1;
+        }
+    }
+
+}
+
 sub do_skill_list {
     my ( $class, $c ) = @_;
     my $genres = $c->db->search('genre',{},{order_by => {id => 'asc'}});

@@ -14,4 +14,5 @@ sub add {
     );
 }
 
+*edit = \&add;
 1;

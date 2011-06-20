@@ -1,0 +1,20 @@
+:cascade layout;
+:around content -> {
+    <div class="row">
+      <div class="column grid-16">
+        <h2>キャラクター編集</h2>
+        <p>
+            キャラクターを編集します
+        </p>
+        :if ( $done ) {
+        <p class="information">更新しました</p>
+        : }
+        :block form | fillinform($pc) -> {
+        <form action="" method="post">
+            :character_form("キャラ情報","編集")
+        </form>
+        : }
+      </div>
+    </div>
+:}
+
