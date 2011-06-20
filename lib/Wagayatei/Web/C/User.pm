@@ -35,8 +35,7 @@ sub do_register {
         } else {
             my $data = $validator->valid_data;
             $c->user->update({status => 'created', name => delete $data->{nick_name}});
-            my $db = Wagayatei::DB->get_db;
-            $db->insert(
+            $c->db->insert(
                 'pc' => {
                     uuid => $class->create_uuid,
                     user_id => $c->user->id,

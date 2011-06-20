@@ -54,7 +54,7 @@ sub do_callback {
     my $oauth_verifier = $c->req->param('oauth_verifier');
     my $back_to = $c->req->param('back_to') || "http://$c->req->uri->host/";
 
-    my $db = Wagayatei::DB->get_db;
+    my $db = $c->db;
 
     my $access_token = $consumer->get_access_token(
         token    => $oauth_token,
@@ -93,13 +93,11 @@ sub do_callback {
     $c->session->set('user_id',$user->id);
     my $token = $access_token->token;
     my $token_secret = $access_token->secret;
-    my $now = localtime;
     $user->update(
         {
             screen_name  => $json->{screen_name},
             token        => $token,
             token_secret => $token_secret,
-            updated_at   => $now,
         }
     );
 
