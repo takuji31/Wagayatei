@@ -9,7 +9,7 @@ sub all_rank {
 
     my $conf = $self->config->{skill_rank};
     my @rank_list = @$conf[0..$self->max];
-    return @rank_list;
+    return [@rank_list];
 }
 
 sub max_rank {
@@ -33,6 +33,13 @@ sub type {
     }
     return join ' ',@types;
 
+}
+
+sub can_set {
+    my ($self, $type) = @_;
+    my $type_data = $self->type_data;
+    return 1 unless scalar @$type_data;
+    return grep /^$type$/, @$type_data;
 }
 
 1;

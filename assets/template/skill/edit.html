@@ -1,0 +1,44 @@
+:cascade layout;
+:around content -> {
+    <div class="row">
+      <div class="column grid-16">
+        <h2>スキル設定</h2>
+        <p>
+            キャラクターのスキルを設定できます
+        </p>
+        <p>設定するキャラクター：<: $pc.name :></p>
+        :if ( $done ) {
+        <p class="information">設定しました</p>
+        : }
+        :block skills | fillinform($pc_skill_ranks) -> {
+        <form action="" method="post">
+            <fieldset>
+              <legend>スキル一覧</legend>
+            :for $genres -> $genre {
+              :my $skills = $genre.skills($pc.type).all
+              :for $skills -> $skill {
+                :if ($~skill.is_first) {
+                <fieldset>
+                  <legend><: $genre.name :></legend>
+                : }
+                <label for="<: $skill.uuid :>" class="skill-label"><: $skill.name :></label>
+                <select id="<: $skill.uuid :>" name="<: $skill.uuid :>" class="skill-select">
+                    <option value="">未設定</option>
+                    :my $all_rank = $skill.all_rank;
+                    :for $all_rank -> $rank {
+                    <option value="<: $~rank.index :>"><: $rank :></option>
+                    : }
+                </select>
+              :if ($~skill.is_last) {
+              </fieldset>
+              : }
+              : }
+            : }
+            </fieldset>
+            <button type="submit">設定</button>
+        </form>
+        : }
+      </div>
+    </div>
+:}
+

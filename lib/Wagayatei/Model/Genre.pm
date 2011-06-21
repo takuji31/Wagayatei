@@ -4,9 +4,15 @@ use warnings;
 use parent 'Wagayatei::Model';
 
 sub skills {
-    my $self = shift;
+    my ($self, $type) = @_;
 
-    return $self->db->search('skill',{genre_id => $self->id},{order_by => { id => 'asc' }});
+    my $cond = {genre_id => $self->id};
+
+    if ( $type ) {
+        $cond->{type_data} = [ { like => "%$type%" }, '[]' ];
+    }
+
+    return $self->db->search('skill', $cond, {order_by => { id => 'asc' }});
 }
 
 1;
