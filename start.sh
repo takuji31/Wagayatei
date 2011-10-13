@@ -1,2 +1,2 @@
 #!/bin/zsh
-env CHIFFON_APP_ENV=dev plackup -s Starlet -I ./lib -R ./ --port=5555
+plackup -s Starlet -I ./lib -R ./ -R /home/takuji/project/Chiffon/lib/ --port=5555
